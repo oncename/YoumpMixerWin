@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <OutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)\</OutputPath>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>yoump_mixer_win11</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <OptionStrict>On</OptionStrict>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionInfer>On</OptionInfer>
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+    <!-- Подавляем предупреждения об устаревших API WasapiLoopbackCapture/WasapiOut в новом NAudio -->
+    <NoWarn>CA1416;BC40000;BC40008</NoWarn>
+    <ApplicationIcon>equalizer.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="equalizer.ico" />
+    <None Include="config.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="NAudio.Asio" Version="2.2.1" />
+    <PackageReference Include="NAudio.Core" Version="2.2.1" />
+    <PackageReference Include="NAudio.Midi" Version="2.2.1" />
+    <PackageReference Include="NAudio.Wasapi" Version="2.2.1" />
+    <PackageReference Include="NAudio.WinForms" Version="2.2.1" />
+    <PackageReference Include="NAudio.WinMM" Version="2.2.1" />
+    <PackageReference Include="Vortice.Direct2D1" Version="3.8.3" />
+    <PackageReference Include="Vortice.Direct3D11" Version="3.8.3" />
+    <PackageReference Include="Vortice.DirectX" Version="3.8.3" />
+    <PackageReference Include="Vortice.DXGI" Version="3.8.3" />
+    <PackageReference Include="Vortice.Mathematics" Version="2.1.1" />
+  </ItemGroup>
+
+  <Target Name="CopyNativeCppDlls" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\build\Yoump.DSP.dll" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\..\build\Yoump.DSP.dll')" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\build\Yoump.APO.dll" DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" Condition="Exists('$(MSBuildProjectDirectory)\..\build\Yoump.APO.dll')" />
+  </Target>
+
+</Project>

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="../Yoump.DSP/Yoump.DSP.vcxproj" Id="2a76d832-1f98-4c8a-bb53-605abee94391" />
+  <Project Path="../Yoump.APO/Yoump.APO.vcxproj" Id="986a19ef-32d2-4a5e-82f3-3fe3ac364fe7" />
+  <Project Path="YoumpMixerWin11.vbproj">
+    <BuildDependency Project="../Yoump.DSP/Yoump.DSP.vcxproj" />
+    <BuildDependency Project="../Yoump.APO/Yoump.APO.vcxproj" />
+  </Project>
+</Solution>

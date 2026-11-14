@@ -1,0 +1,4 @@
+LIBRARY "Yoump.APO.dll"
+EXPORTS
+	DllGetClassObject PRIVATE
+	DllCanUnloadNow PRIVATE
